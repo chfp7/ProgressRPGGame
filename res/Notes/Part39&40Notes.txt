@@ -1,0 +1,11 @@
+Part 39-
+first we will add a transitioning effect
+
+Part 40- Came into alooooot of trouble worked from 6PM till 2:40 AM...
+solution was a simple solid area and complicated problems.. but now its good. to make the 
+entity follow a path activate last line in searchPath. we can use this when we attack monsters
+and if we need some help.
+
+REMEMBER! red color in the draw tiles method. and also now you can make monsters aggressive.
+they can find you now. npc can go where you want him to go. implement that in each class 
+and please fix and try to understand that code more

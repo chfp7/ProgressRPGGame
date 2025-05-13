@@ -1,0 +1,16 @@
+Part 27- We implemented inventory and characterState
+
+
+Part 28-
+I didnt write in time, but now we are able to equip items and stuff and we are updating
+the getPlayerAttackImg(), thats where we add the new animations
+
+Part 29- We are implementing projectiles, we have a fireball, I am thinking of adding many
+projectiles and I am thinking to remove proj in setDefValues and add it only if player is 
+magician, and then swords, staff, etc will be unlockable in the future
+
+IDEA!!! I want to add levels in the game where npc bad people shoot projectiles at player,
+all player does is dodge
+
+We added a parameter to damageMonster since when we have a weapon, attack strength depends
+on weapon + strength while when we damage using projectile, we only use projectile attack

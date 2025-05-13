@@ -1,0 +1,10 @@
+Part 19-
+
+We made the event rect area 2 by 2 at the center of the tile to make sure the player only 
+gets the event when he is on the tile not around it.
+
+We are seeing if direction == reqDirection only if we want the event to happen when the-
+player is facing a certain direction, if it doesnt matter we can just put "any"
+
+Part 20- We are doing a new Class eventRect to be more flexible in the events. making them-
+more advanced

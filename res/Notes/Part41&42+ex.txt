@@ -1,0 +1,21 @@
+explanation of part 40 is available here. Pathfinding, it is a programming algorithm that is
+used in videogames so the NPC can calculate the best path automatically , we could do these
+manually but it would take alot of code and it is bothersome, so lets bother ourselves for
+some time and learn this algorithm
+
+Part 41- We added a feature that lets us break the projectile by attacking it and a knockback
+effect that is just moving opposite direction with a certain speed. using a knockBack method
+
+Part42- Object Detection which doesn't work THAT WELL yet. now we can detect doors and chest
+better, not a huge deal 
+
+Part 43- Stackable items we changed the code quite alot, and now we can just stack some items
+instead of them taking too much space
+
+Part 44- We have an environment system now, we can change weather, lighting and so many things
+using it. we basically implemented a Gradient method in Lighting class. with array of colors
+and floats. each float with a different shade of darkness. now we implement light object 
+
+Part 45- We changed up the code when we added the Lighting object a lantern, it is equipable 
+and when we equip it we toggle the lightUpdated method. and boolean. our variable is lightRadius
+and we can add many light type objects

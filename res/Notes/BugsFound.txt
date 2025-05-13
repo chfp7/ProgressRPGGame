@@ -1,0 +1,8 @@
+Bug1- sometimes when player collides with NPC, the player cant move even to the other-
+direction
+
+Bug1- I found out that the bug only happens when npc right collides with player left
+
+Bug2- UI needs work since some stuff doesnt appear when told in Paused or Play.
+
+Bug3- Hearts dont show during paused (easy solution)

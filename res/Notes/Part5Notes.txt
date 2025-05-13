@@ -1,0 +1,16 @@
+In part 5 we changed alot of the mechanics, If I want to create a game based only on the-
+screen size it is enough for me to learn until part 4 and other additional information. 
+Now we are going to change the dynamic of the game. Our blueboy used to move and is limited
+to the screen. Now he will be at the center and the map will move.
+Also we are going to change the TileManager while loop to support bigger maps. a World Map
+
+Step 1- All worldY and worldX int used to be x and y only, when the character was able to
+move.
+
+Step 2- Placing the screenX and Y will help us move the screen (like a camera). While world
+x and y are where the Character exists in that map. But the character will be in the middle
+of the screen always.
+
+There are many things to be understood yet from part 5 like the if statement that lets us
+render. Or how we changed the whole mapLoader to fit an entire World relative to the player
+But! we shall work

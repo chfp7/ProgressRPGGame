@@ -1,0 +1,23 @@
+Part 35- we did the options screen in options state in UI learned alot of stuff like checkbox
+and progress bar etc...
+part 36- Learned how to save files using text with buffered Reader and buffered Writer. 
+we write using buffered reader and read each line in buffered writer and redo all the configs
+
+part 37 is about when the player dies, he has to respawn
+
+While doing this I got angry that fullScreen Failed and I was determined to get it working. 
+I did and there is some stuff to fix. but everything else is fine!
+
+We did methods for retry and quit, the retry method was to restore player position but keep
+some stuff,
+and when we quit we have a restart method. which restarts the entire game even if we dont
+press quit
+
+Part 38- First we transformed our 2D array to a 3D array
+and also we have an issue finding same objs and npcs in the worldX and Y of other maps so 
+the objs and monsters etc... npcs... will have 2D array one with mapIndex and one which obj
+
+Now the issues with that is that our IDE shows errors but not even close to all when we
+transform the 1D array to a 2D array, like != null doesnt show error, even though it is!
+or also the length of the array. now we have 2 dimensions and each dimension has its own
+length... Java automatically takes the length of the first dimension

@@ -1,0 +1,46 @@
+Part 23-
+
+We first have an issue with the setup method, we have to change it to adapt to new image-
+formats, our attack images are 16x32, different than tileSize
+
+We have issues with the attack left and attack up images so we need to change the screen X- 
+and Y of both of these 2 cases. one tile to the left for left and one tile change for up.
+So we created temporary values for screenx and screeny
+
+We created a rectangle for hit detection, we can change width height etc.. based on what
+weapon but for now we keep it one in player class constructor
+
+(to make the player attack while moving)
+you remove the else after the if(attacking == true) condition in the update method
+ , in player
+ 
+ 
+ UPDATE from Mr Snow, I didnt implement anything yet(if u find issues) do it.
+When I adjusted player's worldX/Y for the attackArea, I added attackArea.height for the "down" and attackArea.width for the "right" case but both should have been gp.tileSize since we're basically checking the next tile. The difference was subtle so I didn't notice it until today!
+
+If you want to show the attackArea on the screen, type the following code in player's draw method:
+		// DEBUG
+		// AttackArea
+		tempScreenX = screenX + solidArea.x;
+		tempScreenY = screenY + solidArea.y;		
+		switch(direction) {
+		case "up": tempScreenY = screenY - attackArea.height; break;
+		case "down": tempScreenY = screenY + gp.tileSize; break; 
+		case "left": tempScreenX = screenX - attackArea.width; break;
+		case "right": tempScreenX = screenX + gp.tileSize; break;
+		}				
+		g2.setColor(Color.red);
+                g2.setStroke(new BasicStroke(1));
+		g2.drawRect(tempScreenX, tempScreenY, attackArea.width, attackArea.height);
+		
+		
+		
+		Part 24- Im having a big null problem on sounds got a null problem with 6 and 7
+		so check the interact npc and the entity class when the monster hits. fix issue
+		
+		
+		We implemented new AI which is damagereaction, we can put anything, animals will
+		run away, and orcs will butt in good progress today
+		
+		
+		//random thenewboston

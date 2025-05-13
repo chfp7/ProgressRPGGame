@@ -1,0 +1,6 @@
+Part 17- we created a new game state title screen, I assume we will do an if statement and
+when we press play, we will change gameState from default titleState into playState
+there is some extra stuff to learn 
+
+Part 18 - We will learn Player life, we used Hearts as objects so I assume we will finally
+use stats and everytime player gets damaged, the images will appear in a certain way

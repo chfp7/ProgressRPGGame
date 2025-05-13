@@ -1,0 +1,22 @@
+This notes will be for part 9 and 10
+
+Part 9- We first placed an object (Boots) to power up, which gives me ideas to also have
+negative power down objects, for penalties, etc...
+
+We use BeepBox to create sound and music, or also Incredibox (maybe)
+
+We made a sound system so for music we do some methods in gamepanel and we just add sound
+effects when we need for example in objects we just add the effects in the switch
+
+Part 10- We fixed a small bug and now we will handle a UI system to make the game more fun
+with buttons and text and other stuff. 
+
+We found out that using new instances (new Font()) is bad since we are on a game thread and 
+we are on 60 FPS so we will instantiate font 60 times per second, this will definitely fuck
+up our game
+
+We also found that when we draw Strings in our screen, the x axis works the same but y works
+differently, the y in images works from the top of the image, while on String it works from
+the baseline (not bottom) baseline.
+
+Officially after part 10 I can create my own, but simple, games!

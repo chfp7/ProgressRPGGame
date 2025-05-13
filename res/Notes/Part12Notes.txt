@@ -1,0 +1,16 @@
+Part 12 is about changing the pixel art.
+Youtubers to learn Pixel Art PixelPete AdamCYounes
+
+ZetCode. here we can learn way more in detail about game development using Java. just in 
+case I got stuck making the game
+
+Part 13
+
+Now we are going to do a little housekeeping on the UI class since we dont have a treasure
+game anymore we are going to improve our game, (I will delete the old stuff we used for the
+old game version
+
+deleted hasKey in player
+
+
+https://www.beepbox.co/#9n31s0k0l00e03t2ca7g0fj07r1i0o432T1v1u18f0q00d23A0F0B0Q0000Pf600E1617T0v5ue6f0q0y10ob3d4aw5h2E1b5T8v1u9cf20m80n2q0x11c21d25x513W6E1c06T2v1u15f10w4qw02d03w0E0b4h400000000h4g000000014h000000004h400000000p21GIOUsxkQu7mhIQv8F6ZH_pU4zjh_AtB51u0CKPhUqFuCzW8W2eYzB2Y18QQuB1At9uPhZohTF4sgFArCzQuQzTg4LjhAQAt97ihQAtdd9u0

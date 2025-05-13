@@ -1,0 +1,12 @@
+IN PART 46 similarly to part 44 and 45, we implemented a day and night system. 
+basically uses counters and stuff and changing the opacity over time. with dusk and dawn.
+
+part 47- we implemented a minimap, similar to loadMap. but we are putting them in an image.
+
+part 48 and 49 - Advanced combat with monster. and also guarding, still needs alot of work
+so make sure to review it well
+
+part 50- Today 21 January 2025 we implemented a save and load using 2 classes, one that is
+seriazable (readable and writable) to store the data. 
+and one that controls the reading and writing of that data. I was having many issues with it
+but I debugged it correctly. 

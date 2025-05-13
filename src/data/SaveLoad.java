@@ -1,0 +1,195 @@
+package data;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import entity.Entity;
+import main.GamePanel;
+import object.OBJ_Axe;
+import object.OBJ_Boots;
+import object.OBJ_Chest;
+import object.OBJ_Coin_Bronze;
+import object.OBJ_Door;
+import object.OBJ_Key;
+import object.OBJ_Lantern;
+import object.OBJ_Potion_Red;
+import object.OBJ_Shield_Blue;
+import object.OBJ_Shield_Wood;
+import object.OBJ_Sword_Normal;
+import object.OBJ_Tent;
+
+public class SaveLoad {
+
+	GamePanel gp;
+	
+	public SaveLoad(GamePanel gp) {
+		
+		this.gp = gp;
+		
+	}
+	
+	
+	public void save() {
+		
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+			
+			DataStorage ds = new DataStorage();
+			
+			//PLAYER STATS
+			ds.level = gp.player.level;
+			ds.maxLife = gp.player.maxLife;
+			ds.coin = gp.player.coin;
+			ds.attack = gp.player.attack;
+			ds.ammo = gp.player.ammo;
+			ds.defense = gp.player.defense;
+			ds.dexterity = gp.player.dexterity;
+			ds.maxMana = gp.player.maxMana;
+			ds.xp = gp.player.xp;
+			ds.strength = gp.player.strength;
+			ds.nextLevelXP = gp.player.nextLevelXP;
+			ds.mana = gp.player.mana;
+			ds.life = gp.player.life;
+			
+			//PLAYER INVENTORY
+			for(int i = 0; i<gp.player.inventory.size(); i++) {
+				ds.itemNames.add(gp.player.inventory.get(i).name);
+				ds.itemAmount.add(gp.player.inventory.get(i).amount);
+			}
+			
+			//PLAYER EQUIPMENT
+			ds.currentWeaponSlot = gp.player.getCurrentWeaponSlot();
+			ds.currentShieldSlot = gp.player.getCurrentShieldSlot();
+			
+			//OBJECTS ON MAP
+			ds.mapObjectNames = new String[gp.maxMap][gp.obj[1].length];
+			ds.mapObjectWorldX = new int[gp.maxMap][gp.obj[1].length];
+			ds.mapObjectWorldY = new int[gp.maxMap][gp.obj[1].length];
+			ds.mapObjectLootNames = new String[gp.maxMap][gp.obj[1].length];
+			ds.objectOpened = new boolean[gp.maxMap][gp.obj[1].length];
+			
+			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
+				for(int i = 0; i< gp.obj[1].length; i++) {
+					if(gp.obj[mapNum][i] == null) {
+						ds.mapObjectNames[mapNum][i] = "NA";
+					}
+					else {
+						ds.mapObjectNames[mapNum][i] = gp.obj[mapNum][i].name;
+						ds.mapObjectWorldX[mapNum][i] = gp.obj[mapNum][i].worldX;
+						ds.mapObjectWorldY[mapNum][i] = gp.obj[mapNum][i].worldY;
+						
+						if(gp.obj[mapNum][i].loot != null) {
+							ds.mapObjectLootNames[mapNum][i] = gp.obj[mapNum][i].loot.name;
+						}
+						ds.objectOpened[mapNum][i] = gp.obj[mapNum][i].opened;
+					}
+				}
+			}
+			
+			//WRITE THE DATA STORAGE OBJECT
+			
+			oos.writeObject(ds);
+			
+		} catch (Exception e) {
+			System.out.println("SAVE EXCEPTION!");
+		}
+		
+	}
+	
+	public void load() {
+		
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+			
+			//READ THE DATASTORAGE OBJECT
+			DataStorage ds = (DataStorage)ois.readObject();//READING WHAT IS ENCODED IN THE CLASS
+			
+			//READ PLAYER STATS
+			gp.player.level = ds.level;
+			gp.player.coin = ds.coin;
+			gp.player.maxLife = ds.maxLife;
+			gp.player.life = ds.life;
+			gp.player.maxMana = ds.maxMana;
+			gp.player.mana = ds.mana;
+			gp.player.strength = ds.strength;
+			gp.player.nextLevelXP = ds.nextLevelXP;
+			gp.player.xp = ds.xp;
+			gp.player.dexterity = ds.dexterity;
+			gp.player.attack = ds.attack;
+			gp.player.defense = ds.defense;
+			gp.player.ammo = ds.ammo;
+			
+			
+			//READ PLAYER INVENTORY
+			gp.player.inventory.clear();//removing all default items
+			for(int i = 0; i<ds.itemNames.size(); i++) {
+				gp.player.inventory.add(gp.eGenerator.getObject(ds.itemNames.get(i)));
+				gp.player.inventory.get(i).amount = ds.itemAmount.get(i);
+			}
+			
+			//PLAYER EQUIPMENT
+			gp.player.currentWeapon = gp.player.inventory.get(ds.currentWeaponSlot);
+			gp.player.currentShield = gp.player.inventory.get(ds.currentShieldSlot);
+			gp.player.getAttack();
+			gp.player.getDefense();
+			gp.player.getPlayerAttackImage();
+			
+			//OBJECTS ON MAP. NEW CODE
+			for (int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
+			    for (int i = 0; i < gp.obj[1].length; i++) {
+			        if (ds.mapObjectNames[mapNum][i].equals("NA")) {
+			            gp.obj[mapNum][i] = null;
+			        } else {
+			            gp.obj[mapNum][i] = gp.eGenerator.getObject(ds.mapObjectNames[mapNum][i]);
+			            if (gp.obj[mapNum][i] != null) {
+			                gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
+			                gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
+			                if (ds.mapObjectLootNames[mapNum][i] != null) {
+			                    gp.obj[mapNum][i].setLoot(gp.eGenerator.getObject(ds.mapObjectLootNames[mapNum][i]));
+			                }
+			                gp.obj[mapNum][i].opened = ds.objectOpened[mapNum][i];
+			                if (gp.obj[mapNum][i].opened) {
+			                    gp.obj[mapNum][i].down1 = gp.obj[mapNum][i].image2;
+			                }
+			            } else {
+			                System.out.println("Failed to load object: " + ds.mapObjectNames[mapNum][i]);
+			            }
+			        }
+			    }
+			}
+
+//			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
+//				for(int i = 0; i< gp.obj[1].length; i++) {
+//					if(ds.mapObjectNames[mapNum][i].equals("NA")) {
+//						gp.obj[mapNum][i] = null;
+//					}
+//					else {   OLD CODE
+//						gp.obj[mapNum][i] = getObject(ds.mapObjectNames[mapNum][i]);
+//						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
+//						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
+//						if(ds.mapObjectLootNames[mapNum][i] != null) {
+//							gp.obj[mapNum][i].loot = getObject(ds.mapObjectLootNames[mapNum][i]);
+//						}
+//						//for chest
+//						gp.obj[mapNum][i].opened = ds.objectOpened[mapNum][i];
+//						if(gp.obj[mapNum][i].opened == true) {
+//							gp.obj[mapNum][i].down1 = gp.obj[mapNum][i].image2;
+//						}
+//					}
+//				}
+//			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("LOAD EXCEPTION!");
+			e.printStackTrace();
+		}
+		
+	}
+	
+}

@@ -1,0 +1,2 @@
+Part 51 : We are going to change the entire dialogue system to a more advanced one, 
+so the code is going to change alot. Hopefully no bugs

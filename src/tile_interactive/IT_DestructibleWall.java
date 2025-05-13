@@ -1,0 +1,82 @@
+package tile_interactive;
+
+import java.awt.Color;
+import java.util.Random;
+
+import entity.Entity;
+import main.GamePanel;
+import object.OBJ_Coin_Bronze;
+import object.OBJ_Heart;
+import object.OBJ_ManaCrystal;
+
+public class IT_DestructibleWall extends InteractiveTile{
+	GamePanel gp;
+	
+	public IT_DestructibleWall(GamePanel gp, int col, int row) {
+		super(gp,col,row);
+		this.gp = gp;
+		
+		this.worldX = gp.tileSize * col;
+		this.worldY = gp.tileSize * row;
+		 
+		down1 = setup("/tile_interactive/destructiblewall",gp.tileSize,gp.tileSize);
+		destructible = true;
+		life = 6;//so we hit it 6 times 
+	}
+	//in this case the correct weapon is an axe to cut the tree
+	public boolean isCorrectItem(Entity entity) {
+		boolean isCorrectItem = false;
+		if(entity.currentWeapon.type == typePickaxe) {
+			isCorrectItem = true;
+		}
+		return isCorrectItem;
+	}
+	
+	public void playSE(){
+		//gp.playSE("cutting tree"); implement later
+	}
+	//this will be very useful for item placement
+	public InteractiveTile getDestroyedForm() {//this shows up at same location
+		InteractiveTile tile = null;
+		
+		return tile;
+	}
+	
+	public Color getParticleColor() {
+		Color color = new Color(65,65,65);
+		return color;
+	}
+	
+	public int getParticleSize() {
+		int size = 6;
+		return size;
+	}
+	
+	public int getParticleSpeed() {
+		int speed = 1;
+		return speed;
+	}
+	
+//	public void checkDrop(){ LATER
+//		//cast a die, based on number we decide what to drop, if its a high level monster, good items will likely drop
+//		int i = new Random().nextInt(100)+1;
+//		
+//		//SET THE MONSTER DROP
+//		if(i<50) {
+//			dropItem(new OBJ_Coin_Bronze(gp));//50% chance
+//		}
+//		if(i>=50 && i<75) {
+//			dropItem(new OBJ_Heart(gp));//25% chance
+//		}
+//		if(i>75) {
+//			dropItem(new OBJ_ManaCrystal(gp));//25% chance
+//		}
+//		
+//	}
+	
+	public int getParticleMaxLife() {//determines how long are particles in the air
+		int maxLife = 20;
+		return maxLife;
+	}
+	
+}

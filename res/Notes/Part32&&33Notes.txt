@@ -1,0 +1,15 @@
+Part33- We created new class and package interactive tiles, we are now able to cut dry trees
+we just handle collision in the attacking method and we put null to make tree disappear. 
+
+now we want to implement a tree trunk placement after we break the tree, mr snow had 2 methods,
+one method was to just setup  a tree trunk tile and place it on map, very lazy way... other
+was to make it an object which is better since I want to remove that tile
+
+the getDamagedTile function is super useful for item removal and item placement also.
+its the same mechanism but we add a new button for placement
+
+I have an idea to lock certain places until player finds the object for it
+
+Part 34- up until now (rewatch part 34 video), we have been directly extending g2 to JPanel
+, since mr snow didnt plan full screen. now we are rendering everything into an image drawn
+by g2 (tempScreen), and implementing it into JPanel

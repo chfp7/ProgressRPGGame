@@ -1,0 +1,39 @@
+Mr Snow is finding issues with rendering, so we changed alot of our code, like Objects- 
+extending Entity class instead of SuperObject which now is deleted. I personally find the 
+old code better, I saved it aside, but I dont want any future errors so Ill do the same
+
+//!also moved to Player class
+		
+		//OBJECT
+		for(int i = 0; i<obj.length; i++) {
+			//we cannot draw object if there is null places in array. so we use if statement
+			if(obj[i] != null) {
+				
+			obj[i].draw(g2, this);
+			
+			}
+			
+		}
+		//NPC part 14
+		for(int i = 0; i<npc.length; i++) {
+			//we cannot draw object if there is null places in array. so we use if statement
+			if(npc[i] != null) {
+				
+			npc[i].draw(g2);
+			
+		    }
+		}
+		
+		//PLAYER
+		player.draw(g2);
+		 
+		 We deleted all of this from the Gamepanel ELse class in the paint component method
+		 
+		 
+		 
+		 Everything is back to normal!
+		 
+		 Part22 - 
+
+		 
+		 

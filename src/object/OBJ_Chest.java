@@ -1,0 +1,69 @@
+package object;
+
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+import entity.Entity;
+import main.GamePanel;
+
+public class OBJ_Chest extends Entity{
+	
+	GamePanel gp;
+	
+	public static final String objName = "Chest";
+
+	
+	
+	public OBJ_Chest(GamePanel gp) {
+		
+		super(gp);
+		this.gp = gp;
+		
+		type = this.typeObstacle;
+		name = objName;
+		
+		image = setup("/objects/chest",gp.tileSize, gp.tileSize);
+		image2 = setup("/objects/chest_opened",gp.tileSize, gp.tileSize);
+		down1 = image;
+		collision = true;
+		
+		solidArea.x = 4;
+		solidArea.y = 16;
+		solidArea.width = 40;
+		solidArea.height = 32;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+	}
+	
+	public void setDialogue() {
+		dialogues[0][0] = "You open the chest and find a "+ loot.name + "!\n but you cannot carry anymore...";
+		dialogues[1][0] = "You open the chest and find a "+ loot.name + "!\n you obtained the " + loot.name;
+		dialogues[2][0] = "Chest is empty";
+	}
+	
+	public void setLoot(Entity loot) {
+		
+		this.loot = loot;
+		setDialogue();//not in constructor since we dont need it if loot is null
+	}
+	
+	public void interact() {
+				
+		if(opened == false) {
+			gp.playSE(3);//opened chest !!! change it
+			
+			if(gp.player.canObtainItem(loot) == false) {
+				startDialogue(this,0);
+			}
+			else {
+				startDialogue(this,1);
+				down1 = image2;
+				opened = true;
+			}
+		}
+		else {
+			startDialogue(this,2);
+			}
+	}
+
+}

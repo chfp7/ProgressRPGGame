@@ -1,0 +1,3 @@
+I am in part 55 I fixed some of my errors. stupid mistakes. 
+
+part 55 minute 4 to watch the drawPlayerLife method incase there are errors

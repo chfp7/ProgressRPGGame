@@ -1,0 +1,9 @@
+Part 11- We are going to optimize our code as much as we can because the game I want to work 
+on is heavy and we dont want the game to be any slow on ANY computer
+
+What we did first is we used to instantiate a *new* buffered image every time while rendering
+tiles, now we have a function for that and instantiate prior the game loop. so it takes less
+memory and less time. we used the UtilityTools class we created and did the scaling there
+
+We did the same for tiles, our player, and the objects.
+The difference was a bit notable but it will only be very notable when we have a HUGE game

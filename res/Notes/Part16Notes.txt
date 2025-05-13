@@ -1,0 +1,5 @@
+I skipped alot of notes since I added pretty much everything I need in comments next to all
+code,
+
+Part 16-
+We will learn how to make the font accessible to everyone since fonts vary on different pcs
